@@ -1,3 +1,5 @@
+import List from '../models/List'
+
 /**
  * Lists Controller
  */
@@ -17,7 +19,9 @@ class ListsController {
      * @param res
      */
     index(req, res) {
-        res.json({ message: `Index` });
+        List.fetchAll().then((data) => {
+            res.json(data);
+        })
     }
 
     /**
@@ -27,7 +31,7 @@ class ListsController {
      */
     details(req, res) {
         const id = req.params.id;
-        res.json({ message: `Details Id: ${id}` });
+        res.json({ message: `Details Id: ${id}` })
     }
 
     /**
@@ -36,7 +40,7 @@ class ListsController {
      * @param res 
      */
     store(req, res) {
-        res.json({ message: `Store` });
+        res.json({ message: `Store` })
     }
 
     /**
@@ -46,7 +50,7 @@ class ListsController {
      */
     update(req, res) {
         const id = req.params.id;
-        res.json({ message: `Update Id: ${id}` });
+        res.json({ message: `Update Id: ${id}` })
     }
 
     /**
@@ -56,7 +60,7 @@ class ListsController {
      */
     destroy(req, res) {
         const id = req.params.id;
-        res.json({ message: `Destroy Id: ${id}` });
+        res.json({ message: `Destroy Id: ${id}` })
     }
 }
 
