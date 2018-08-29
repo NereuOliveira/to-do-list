@@ -1,5 +1,6 @@
 import express              from 'express'
 import cors                 from 'cors'
+import { urlencoded, json } from 'body-parser'
 import { 
     mainRoutes,
     listRoutes, 
@@ -8,6 +9,8 @@ import {
 
 const app = express()
 app.use(cors())
+app.use(urlencoded({ extended: false }))
+app.use(json())
 
 /**
  * Register Routes

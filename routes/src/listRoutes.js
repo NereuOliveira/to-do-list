@@ -22,7 +22,7 @@ listRoutes.route('/')
  *  - Update
  *  - Destroy
  */
-listRoutes.route('/:id')
+listRoutes.route('/:guid')
     .get(ListsController.details)
     .put(ListsController.update)
     .patch(ListsController.update)

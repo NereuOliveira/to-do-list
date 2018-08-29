@@ -1,4 +1,4 @@
-import List from '../models/List'
+import ListsRepository from '../repository/ListsRepository'
 
 /**
  * Lists Controller
@@ -14,53 +14,60 @@ class ListsController {
     }
 
     /**
+     * Get an array of lists
      * 
      * @param req
      * @param res
      */
     index(req, res) {
-        List.fetchAll().then((data) => {
-            res.json(data);
-        })
+        res.json(ListsRepository.getAll())
     }
 
     /**
+     * Get one list
      * 
      * @param req 
      * @param res 
      */
     details(req, res) {
-        const id = req.params.id;
-        res.json({ message: `Details Id: ${id}` })
+        const guid = req.params.guid
+        res.json(ListsRepository.get(guid))
     }
 
     /**
+     * Store a new list
      * 
      * @param req 
      * @param res 
      */
     store(req, res) {
-        res.json({ message: `Store` })
+        let { name } = req.body
+        const guid = ListsRepository.create(name)
+        res.json({ message: `List Created`, guid, name })
     }
 
     /**
+     * Update a list
      * 
      * @param req 
      * @param res 
      */
     update(req, res) {
-        const id = req.params.id;
-        res.json({ message: `Update Id: ${id}` })
+        const guid = req.params.guid;
+        ListsRepository.update(guid, req.body)
+        res.json({ message: `List Updated` })
     }
 
     /**
+     * Destroy a list
      * 
      * @param req 
      * @param res 
      */
     destroy(req, res) {
-        const id = req.params.id;
-        res.json({ message: `Destroy Id: ${id}` })
+        const guid = req.params.guid
+        ListsRepository.delete(guid)
+        res.json({ message: `List Deleted` })
     }
 }
 
