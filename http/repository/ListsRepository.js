@@ -1,24 +1,23 @@
-import Store from 'data-store'
-import uuid from 'uuid/v4'
+import Store from 'data-store';
+import uuid from 'uuid/v4';
 
 class ListsRepository {
     constructor() {
-        this.lists = new Store('lists', { path: 'data/lists.json' })
-        this.listItems = new Store('list_items', { path: 'data/list_items.json' })
+        this.lists = new Store('lists', { path: 'data/lists.json' });
+        this.listItems = new Store('list_items', { path: 'data/list_items.json' });
     }
 
     getAll() {
-        return this.lists.get('data')
+        return this.lists.get('data');
     }
 
     get(guid) {
-        let list = this.lists.get(`data.${guid}`)
-        let items = this.listItems.get(`data.${guid}`) || []
+        let list = this.lists.get(`data.${guid}`);
+        let items = this.listItems.get(`data.${guid}`) || [];
 
-        if (typeof list === 'undefined')
-            return null;
+        if (typeof list === 'undefined') return null;
 
-        return { ...list, items }
+        return { ...list, items };
     }
 
     create(name) {
@@ -29,7 +28,10 @@ class ListsRepository {
     }
 
     update(guid, form) {
-        this.listItems.set(`data.${guid}`, form.items.filter(item => item.description.trim() !== ''))
+        this.listItems.set(
+            `data.${guid}`,
+            form.items.filter((item) => item.description.trim() !== '')
+        );
     }
 
     delete(guid) {
@@ -38,4 +40,4 @@ class ListsRepository {
     }
 }
 
-export default new ListsRepository
+export default new ListsRepository();

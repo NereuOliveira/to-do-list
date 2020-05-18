@@ -1,7 +1,7 @@
-import db from '../../config/db'
+import db from '../../config/db';
 
 const ListItem = db.Model.extend({
-    tableName: 'list_items'
-})
+    tableName: 'list_items',
+});
 
-export default ListItem
+export default ListItem;

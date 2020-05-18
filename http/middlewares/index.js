@@ -1,5 +1,3 @@
-import apiMiddleware from './src/apiMiddleware'
+import apiMiddleware from './src/apiMiddleware';
 
-export {
-    apiMiddleware
-}
+export { apiMiddleware };
